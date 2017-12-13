@@ -52,7 +52,7 @@ namespace octomap
     for( size_t i = 0; i<valid_indices.size(); ++i )
     {
       if( i%1000==0)
-	std::cout<<"\ncalculating occlusion for point "<<i<<"/"<<valid_indices.size();
+	    std::cout<<"\ncalculating occlusion for point "<<i<<"/"<<valid_indices.size();
       
       //point3d point(it->x, it->y, it->z);
       point3d point(pcl.points[valid_indices[i]].x, pcl.points[valid_indices[i]].y, pcl.points[valid_indices[i]].z);
@@ -61,36 +61,38 @@ namespace octomap
       point3d new_end = point + curr_ray.normalized() * occlusion_update_dist_m_;
       if (this->link_.octree->computeRayKeys(point, new_end, ray))
       {
-	  KeyRay::iterator occ = ray.begin(); // first point is the occupied one - skip it!
-	  KeyRay::iterator end = ray.end();
+        KeyRay::iterator occ = ray.begin(); // first point is the occupied one - skip it!
+        KeyRay::iterator end = ray.end();
 	  
-	  if(occ!=end)
-	  {
-	    ++occ;
-	    for( unsigned int dist=1; occ!=end; ++dist, ++occ )
-	    {
-	      typename TREE_TYPE::NodeType* voxel = this->link_.octree->search(*occ);
-			      
-	      if( voxel!=NULL )
-	      {
-		  if( !voxel->hasMeasurement() )
-		  {
-		      voxel->updateOccDist( dist );
-		      voxel->setMaxDist(max_nr_of_cells_in_occlusion);
-		  }
-	      }
-	      else
-	      {
-		  voxel = this->link_.octree->updateNode(*occ, false);
-		  // the occupancy probability will be ignored during an actual update with the following call:
-		  voxel->updateHasMeasurement(false);
-		  voxel->updateOccDist( dist );
-		  voxel->setMaxDist(max_nr_of_cells_in_occlusion);
-	      }
-	    }
-	  }
+        if(occ!=end)
+        {
+          ++occ;
+          for( unsigned int dist=1; occ!=end; ++dist, ++occ )
+          {
+            typename TREE_TYPE::NodeType* voxel = this->link_.octree->search(*occ);
+                
+            if( voxel!=NULL )
+            {
+              if( !voxel->hasMeasurement() )
+              {
+                voxel->updateOccDist( dist );
+                voxel->setMaxDist(max_nr_of_cells_in_occlusion);
+              }
+            }
+            else
+            {
+              voxel = this->link_.octree->updateNode(*occ, false);
+              // the occupancy probability will be ignored during an actual update with the following call:
+              voxel->updateHasMeasurement(false);
+              voxel->updateOccDist( dist );
+              voxel->setMaxDist(max_nr_of_cells_in_occlusion);
+            }
+          }
+
+        }
       }
     }
+
   }
   
   TEMPT

@@ -167,26 +167,26 @@ namespace ig_active_reconstruction
     {
       for( size_t i = base_index; i<id_set.size(); i+=batch_size )
       {	
-	views::View view = viewspace->getView( id_set[i] );
+        views::View view = viewspace->getView( id_set[i] );
+        
+        world_representation::CommunicationInterface::ViewIgResult information_gains;
+        double ig_val = 0;
+        
+        command.path.clear();
+        command.path.push_back( view.pose() );
+        
+        world_comm_unit_->computeViewIg(command,information_gains);
 	
-	world_representation::CommunicationInterface::ViewIgResult information_gains;
-	double ig_val = 0;
-	
-	command.path.clear();
-	command.path.push_back( view.pose() );
-	
-	world_comm_unit_->computeViewIg(command,information_gains);
-	
-	for( unsigned int i= 0; i<information_gains.size(); ++i )
-	{
-	  if( information_gains[i].status == world_representation::CommunicationInterface::ResultInformation::SUCCEEDED )
-	  {
-	    //std::cout<<"\nReturned gain of metric "<<i<<":"<<information_gains[i].predicted_gain;
-	    ig_val += ig_weights_[i]*information_gains[i].predicted_gain;
-	  }
-	}
-	total_ig += ig_val;
-	ig_vector[i] = ig_val;
+        for( unsigned int i= 0; i<information_gains.size(); ++i )
+        {
+          if( information_gains[i].status == world_representation::CommunicationInterface::ResultInformation::SUCCEEDED )
+          {
+            std::cout<<"\nReturned gain of metric "<<i<<":"<<information_gains[i].predicted_gain;
+            ig_val += ig_weights_[i]*information_gains[i].predicted_gain;
+          }
+        }
+        total_ig += ig_val;
+        ig_vector[i] = ig_val;
       }
       return;
     }

@@ -30,6 +30,8 @@ namespace views
 
     std::map<std::string, geometry_msgs::Pose > get_poses_map();
 
+    unsigned int get_nr_of_views();
+
   private:
     void set_joints_map( double joint_0, double joint_1, double joint_2, double joint_3, double joint_4, std::string id );
 
@@ -43,6 +45,7 @@ namespace views
     std::map<std::string, std::map<std::string, double>> joints_map_;
     std::map<std::string, geometry_msgs::Pose> poses_map_;
     ros::ServiceServer robot_moving_to_joints_service_;
+    unsigned int nr_of_views;
   };
 
 }

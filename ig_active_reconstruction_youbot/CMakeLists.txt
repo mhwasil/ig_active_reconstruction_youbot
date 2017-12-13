@@ -80,7 +80,6 @@ add_executable(yb_moveit_commander
   src/nodes/yb_moveit_commander.cpp
   ${${PROJECT_NAME}_CODE_BASE}
 )
-
 target_link_libraries(yb_moveit_commander
    ${catkin_LIBRARIES}
    ${Boost_LIBRARIES}
@@ -89,6 +88,14 @@ add_dependencies(yb_moveit_commander
  ${catkin_EXPORTED_TARGETS}
 )
 
-
-
-
+add_executable(yb_joints_to_pose_converter
+  src/nodes/yb_joints_to_pose_converter.cpp
+  ${${PROJECT_NAME}_CODE_BASE}
+)
+target_link_libraries(yb_joints_to_pose_converter
+   ${catkin_LIBRARIES}
+   ${Boost_LIBRARIES}
+)
+add_dependencies(yb_joints_to_pose_converter
+ ${catkin_EXPORTED_TARGETS}
+)

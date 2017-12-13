@@ -49,7 +49,7 @@ namespace octomap
     double p_free = 1-likelihood;
     if(likelihood==0 || p_free==0)
     {
-	return 0;
+	    return 0;
     }
     double vox_ig = -likelihood*log(likelihood)-p_free*log(p_free);
     return vox_ig;
@@ -102,7 +102,7 @@ namespace octomap
     }
     else if( !voxel->hasMeasurement() )
     {
-	p_occ=config.p_unknown_prior; // default for unknown
+	    p_occ=config.p_unknown_prior; // default for unknown
     }
     else
     {

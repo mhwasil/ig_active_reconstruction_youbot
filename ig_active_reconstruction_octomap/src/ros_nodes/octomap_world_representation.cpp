@@ -77,7 +77,7 @@ int main(int argc, char **argv)
   std::string world_frame;
   ros_tools::getExpParam(world_frame,"world_frame_name");
   
-  // Occlusion calculation config
+  // Occlusion calculation configconfig
   RayOcclusionCalculator<TreeType,PclType>::Options occlusion_config(0.3);
   ros_tools::getParamIfAvailable(occlusion_config.occlusion_update_dist_m,"occlusion_update_dist_m");
   

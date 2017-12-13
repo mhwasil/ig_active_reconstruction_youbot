@@ -11,7 +11,7 @@
     <param name="clamping_threshold_max" value="0.97" />
     
     <!-- PCL input configuration -->
-    <param name="world_frame_name" value="odom" /> <!-- original in simulation "world" change to base_link in real-->
+    <param name="world_frame_name" value="map" /> <!-- original in simulation "world" change to "map" in real-->
     <param name="use_bounding_box" value="true" />
     <param name="bounding_box_min_point_m/x" value="-0.6" />
     <param name="bounding_box_min_point_m/y" value="-0.6" />

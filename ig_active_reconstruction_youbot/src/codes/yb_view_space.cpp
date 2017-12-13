@@ -96,12 +96,16 @@ namespace views
     return poses_map_;
   }
 
-  
   bool moveToJointsService( ig_active_reconstruction_msgs::youbotMoveToOrder::Request& req, 
                                     ig_active_reconstruction_msgs::youbotMoveToOrder::Response& res )
   {
     
   }
+
+/*   unsigned int get_nr_of_views()
+  {
+    return nr_of_views;
+  } */
 
 }
 }
