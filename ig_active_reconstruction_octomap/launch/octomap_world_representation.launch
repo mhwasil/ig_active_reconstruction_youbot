@@ -12,6 +12,8 @@
     
     <!-- PCL input configuration -->
     <param name="world_frame_name" value="map" /> <!-- original in simulation "world" change to "map" in real-->
+    
+    <!--Bounding box works as the limit of how much points we want to cover-->
     <param name="use_bounding_box" value="true" />
     <param name="bounding_box_min_point_m/x" value="-0.6" />
     <param name="bounding_box_min_point_m/y" value="-0.6" />

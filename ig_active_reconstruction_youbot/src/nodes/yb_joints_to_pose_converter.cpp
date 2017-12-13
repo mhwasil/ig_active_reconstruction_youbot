@@ -122,7 +122,7 @@ void save_to_file(std::string filename_, std::map<int, movements::Pose> poses_ma
   std::ofstream out(filename_, std::ofstream::trunc);
 
   out << poses_map_.size();
-
+  int ws = 0;
   //for( unsigned int i=0; i<view_space_.size(); ++i )
   for (auto &pair : poses_map_)
   {
