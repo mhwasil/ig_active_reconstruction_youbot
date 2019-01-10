@@ -17,6 +17,7 @@
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>movements</build_depend>
+  <build_depend>ig_active_reonstruction_msgs</build_depend>
 
   <run_depend>movements</run_depend>
 
