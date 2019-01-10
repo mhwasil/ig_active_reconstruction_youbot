@@ -59,10 +59,10 @@ namespace octomap
     {
       return static_cast<IgTreeNode*> (::octomap::OcTreeDataNode<float>::getChild(i));
     }
-    inline const IgTreeNode* getChild(unsigned int i) const
-    {
-      return static_cast<const IgTreeNode*> (::octomap::OcTreeDataNode<float>::getChild(i));
-    }
+    //inline const IgTreeNode* getChild(unsigned int i) const
+    // {
+    //  return static_cast<const IgTreeNode*> (OcTreeDataNode<float> *::octomap::OcTreeDataNode<float>::getChild(i));
+    //}
 
     // -- node occupancy  ----------------------------
 
